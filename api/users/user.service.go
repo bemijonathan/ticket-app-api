@@ -2,11 +2,9 @@ package users
 
 import (
 	"github.com/bemijonathan/tickets_app/helpers"
-	"net/http"
 )
 
-func GetUsers (r *http.Request) (helpers.ServiceResponse, error)  {
-	//println(r)
+func GetUsers () (helpers.ServiceResponse, error)  {
 	t := helpers.ServiceResponse{
 		Data:       "hello",
 		Status:     true,

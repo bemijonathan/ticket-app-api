@@ -1,8 +1,8 @@
 package db
 
 import (
-	"fmt"
 	"github.com/bemijonathan/tickets_app/models"
+	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"log"

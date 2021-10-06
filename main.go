@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"github.com/bemijonathan/tickets_app/api/users"
 	"github.com/bemijonathan/tickets_app/db"
+	middleware_ "github.com/bemijonathan/tickets_app/middleware"
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"log"
-	"net/http"
 	"os"
 )
 
@@ -16,24 +15,20 @@ func init (){
 }
 
 func main(){
-
 	db.Connect()
+	router := gin.Default()
 
-	http.HandleFunc("/user",  users.UserRoutes)
+	User := router.Group("/user")
+	{
+		User.GET("/", middleware_.AuthMiddleWare(true), users.GetUserRoute)
+	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Welcome to new server!")
+	router.GET("/", func(context *gin.Context) {
+		context.JSON(200, gin.H{"ping": "pong"})
 	})
 
-	port := ":" + os.Getenv("port")
-	
-	log.Printf("server is starting on %s " , port)
-	//log any error
-	http.ListenAndServe(
-		port,
-		nil,
-	)
-	
+	router.Run(os.Getenv("port"))
+
 }
 
 

@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: go-template
+    build:
+      context: .
+      target: "development"
+    image: go-template
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - 3000:4000
+
+  database:
+    container_name: postgres-db
+    volumes:
+      - .:/db/demand
+    restart: always

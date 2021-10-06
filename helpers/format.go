@@ -1,11 +1,9 @@
 package helpers
 
 import (
-	"encoding/json"
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
-func FormatResponse (w http.ResponseWriter ,  data ServiceResponse) {
-	w.WriteHeader(data.StatusCode)
-	json.NewEncoder(w).Encode(data)
+func FormatResponse (c * gin.Context ,  data ServiceResponse) {
+	c.JSON(data.StatusCode, data )
 }
