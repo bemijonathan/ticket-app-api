@@ -1,8 +1,8 @@
 package db
 
 import (
-	"github.com/bemijonathan/tickets_app/models"
 	"fmt"
+	"github.com/bemijonathan/tickets_app/models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"log"
@@ -22,7 +22,9 @@ func Connect () {
 			dbHost, username, password, dbName,
 			)
 
-	conn, err := gorm.Open("postgres", dsn)
+	fmt.Println(dsn)
+
+	conn, err := gorm.Open("postgres", "\"postgres://root:root@localhost:5432/tickets_app?sslmode=disable\"")
 	if err != nil {
 		log.Fatal(err.Error())
 	}

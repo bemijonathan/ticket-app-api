@@ -8,8 +8,8 @@ RUN go mod download
 
 COPY . .
 
-RUN go get github.com/pilu/fresh
+# RUN go get github.com/pilu/fresh
 
 EXPOSE 4000
 
-CMD ["fresh"]
+CMD ["go" , "run", "."]
